@@ -3,35 +3,15 @@
     <section class="intro">
       <h1> Get the latest tech news!</h1>
     </section>
-    <section class="featured-posts">
-      <PostPreview
-        id="1"
-        title="First Post"
-        previewText="This is first Post preview"
-        thumbnail="https://zdnet1.cbsistatic.com/hub/i/2018/01/26/b4fe5bfc-6e3b-4575-b8db-f06caadc1a71/b54b41fb82647ceee2c18a6912f0e8db/tech-transport-future-intro.jpg"
-      />
-      <PostPreview
-        id="2"
-        title="Second Post"
-        previewText="This is second Post preview"
-        thumbnail="https://zdnet1.cbsistatic.com/hub/i/2018/01/26/b4fe5bfc-6e3b-4575-b8db-f06caadc1a71/b54b41fb82647ceee2c18a6912f0e8db/tech-transport-future-intro.jpg"
-      />
-      <PostPreview
-        id="3"
-        title="Third Post"
-        previewText="This is third Post preview"
-        thumbnail="https://zdnet1.cbsistatic.com/hub/i/2018/01/26/b4fe5bfc-6e3b-4575-b8db-f06caadc1a71/b54b41fb82647ceee2c18a6912f0e8db/tech-transport-future-intro.jpg"
-      />
-
-    </section>
+      <PostList/>
   </div>
 </template>
 <script>
-  import PostPreview from '~/components/Posts/PostPreview.vue'
+  import PostList from '~/components/Posts/PostList.vue'
 
   export default {
     components: {
-      PostPreview
+      PostList
     }
   }
 </script>
