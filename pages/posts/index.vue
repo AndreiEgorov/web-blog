@@ -1,17 +1,22 @@
 <template>
-    <div class="posts-page">
-
-    </div>
+  <div class="posts-page">
+      <PostList/>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "index"
+  import PostList from '~/components/Posts/PostList.vue'
+
+  export default {
+    name: "index",
+    components: {
+      PostList
     }
+  }
 </script>
 
 <style scoped>
-  .posts-page{
+  .posts-page {
     display: flex;
     justify-content: center;
     align-items: center;
