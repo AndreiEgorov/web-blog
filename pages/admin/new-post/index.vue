@@ -8,16 +8,12 @@
 
 <script>
   import AdminPostForm from '~/components/Admin/AdminPostForm'
-  import AppButton from '~/components/UI/AppButton'
-
   export default {
     name: "NewPost",
+    layout: 'admin',
     components: {
       AdminPostForm,
     },
-
-
-
   }
 </script>
 
