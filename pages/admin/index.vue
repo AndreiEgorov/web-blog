@@ -14,7 +14,7 @@
   import AppButton from "~/components/UI/AppButton";
 
   export default {
-    name: "index",
+    layout:'admin',
     components: {
       AppButton,
       PostList
