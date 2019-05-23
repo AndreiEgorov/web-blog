@@ -9,8 +9,6 @@
       :previewText="post.previewText"
       :thumbnail="post.thumbnail"  />
 
-    <p>{{posts}}</p>
-
   </section>
 </template>
 <script>
