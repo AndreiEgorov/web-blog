@@ -37,9 +37,7 @@
             ]
           })
         }, 2000)
-
         // in case of reject the below happens and nuxt error page comes up
-
         // reject(new Error())
       }).then(data => {
           return data
@@ -48,8 +46,11 @@
         //context.error will bring up the nuxt error page up
         context.error(e)
       });
-
+    },
+    created(){
+      this.$store.dispatch('setPosts', this.loadedPosts)
     }
+
   }
 </script>
 
