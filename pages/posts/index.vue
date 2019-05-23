@@ -13,7 +13,11 @@
       PostList
     },
 
-    asyncData(context) {
+    fetch(context) {
+      to only fetch if (aka prepopulate store state) if there is nothing in it
+      if(context.store.state.loadedPosts.length > 0) {
+        return null
+      }
       return new Promise((resolve, reject) => {
         // in case of successful resolve the below happens
 
@@ -40,16 +44,20 @@
         // in case of reject the below happens and nuxt error page comes up
         // reject(new Error())
       }).then(data => {
-          return data
+          // access store via context since inside fetch you dont have access to "this"
+        context.store.commit('setPosts', data.loadedPosts)
         }
+
       ).catch(e => {
         //context.error will bring up the nuxt error page up
         context.error(e)
       });
     },
-    created(){
-      this.$store.dispatch('setPosts', this.loadedPosts)
-    }
+   computed:{
+      loadedPosts() {
+        return this.$store.getters.loadedPosts
+      }
+   }
 
   }
 </script>
