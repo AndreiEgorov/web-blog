@@ -16,6 +16,9 @@ const createStore = () => {
       // nuxtServerInit action will be dispatched automatically by nuxt only once to preload data into store
       nuxtServerInit(vuexContext, context) {
         return new Promise((resolve, reject) => {
+          if(!process.client){
+            console.log("CONTEXTOS",context.req)
+          }
 
           setTimeout(() => {
             vuexContext.commit('setPosts', [ {
