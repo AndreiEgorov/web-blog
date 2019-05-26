@@ -53,6 +53,7 @@
     methods: {
       onSave() {
         //Save the post
+        this.$emit("submit", this.editedPost);
         console.log(this.editedPost)
       },
       onCancel() {
