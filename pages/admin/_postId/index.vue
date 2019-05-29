@@ -22,6 +22,14 @@
         })
         .catch(e => context.error(e))
 
+    },
+    methods:{
+      onSubmitted(editedPost){
+        axios.put(`https://web-blog-50516.firebaseio.com/posts/${this.$route.params.postId}.json`, editedPost)
+          .then(this.$router.push('/admin'))
+          .catch(e => console.log(e))
+      }
+
     }
 
 
