@@ -4,7 +4,7 @@
       <AppButton @click="$router.push('/admin/new-post')"> Create Post</AppButton>
     </section>
     <section class="existing-posts">
-      <PostList isAdmin/>
+      <PostList isAdmin :posts="loadedPosts"/>
     </section>
   </div>
 </template>
@@ -18,6 +18,11 @@
     components: {
       AppButton,
       PostList
+    },
+    computed:{
+      loadedPosts(){
+        return this.$store.getters.loadedPosts
+      }
     }
 
   }

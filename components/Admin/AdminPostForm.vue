@@ -14,7 +14,9 @@
       control-type="textarea"
       v-model="editedPost.previewText">Preview text
     </AppControlInput>
-    <AppButton type="submit">Save</AppButton>
+    <AppButton
+      type="submit" @click="onSave">Save
+    </AppButton>
 
     <AppButton
       type="button"
@@ -25,7 +27,8 @@
   </form>
 </template>
 
-<<script>
+<
+<script>
   import AppControlInput from '~/components/UI/AppControlInput'
   import AppButton from '~/components/UI/AppButton'
 
@@ -36,8 +39,8 @@
       AppButton
 
     },
-    props:{
-      post:{
+    props: {
+      post: {
         type: Object,
         required: false
       }
