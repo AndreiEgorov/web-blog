@@ -21,10 +21,14 @@ export default {
   },
 
   /*
-  ** Customize the progress-bar color
+  ** Customize the progress-bar color aka loading bar
   */
-  loading: { color: '#fff' },
-
+  loading: { color: '#fa923f', failedColor:"red", height: "10px", duration: 5000 },
+  // if you have an spa and not universal then use loading indicator to get a spinner
+  // loadingIndicator: {
+  //   name: "circle",
+  //   color: "#fa923f"
+  // },
   /*
   ** Global CSS
   */
