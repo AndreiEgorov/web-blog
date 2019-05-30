@@ -22,6 +22,11 @@
 
   export default {
     name: "index",
+
+    //to overwrite head settings of nuxt config. It can only be done from withing pages
+    head: {
+      title: "A Blog Post"
+    },
     asyncData(context) {
       return axios.get(`https://web-blog-50516.firebaseio.com/posts/${context.params.id}.json`)
         .then(res => {
