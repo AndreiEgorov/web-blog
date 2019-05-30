@@ -18,20 +18,22 @@
     asyncData(context) {
       return axios.get(`https://web-blog-50516.firebaseio.com/posts/${context.params.postId}.json`)
         .then(res => {
-          return { loadedPost: res.data}
+          return {
+            loadedPost: {...res.data, id: context.params.postId}
+          }
         })
         .catch(e => context.error(e))
 
     },
-    methods:{
-      onSubmitted(editedPost){
-        axios.put(`https://web-blog-50516.firebaseio.com/posts/${this.$route.params.postId}.json`, editedPost)
-          .then(this.$router.push('/admin'))
-          .catch(e => console.log(e))
+    methods: {
+      onSubmitted(editedPost) {
+        this.$store.dispatch('editPost', editedPost)
+          .then(() => {
+            this.$router.push('/admin')
+          })
       }
 
     }
-
 
   }
 </script>

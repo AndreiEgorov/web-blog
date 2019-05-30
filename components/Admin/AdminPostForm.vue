@@ -1,11 +1,8 @@
 <template>
   <form @submit.prevent="onSave">
     <AppControlInput v-model="editedPost.author">Author Name</AppControlInput>
-
     <AppControlInput v-model="editedPost.title">Title</AppControlInput>
-
     <AppControlInput v-model="editedPost.thumbnail">Thumbnail Link</AppControlInput>
-
     <AppControlInput
       control-type="textarea"
       v-model="editedPost.content">Content
@@ -15,9 +12,8 @@
       v-model="editedPost.previewText">Preview text
     </AppControlInput>
     <AppButton
-      type="submit" @click="onSave">Save
+      type="submit">Save
     </AppButton>
-
     <AppButton
       type="button"
       style="margin-left: 10px"
@@ -33,7 +29,7 @@
   import AppButton from '~/components/UI/AppButton'
 
   export default {
-    name: "NewPost",
+    name: "AdminPost",
     components: {
       AppControlInput,
       AppButton
@@ -61,7 +57,7 @@
       onSave() {
         //Save the post
         this.$emit("submit", this.editedPost);
-        console.log(this.editedPost)
+        console.log("on SAVE", this.editedPost)
       },
       onCancel() {
         this.$router.push('/admin')
