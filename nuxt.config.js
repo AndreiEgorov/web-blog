@@ -33,6 +33,7 @@ export default {
   ** Global CSS
   */
   css: [
+
   ],
 
   /*
@@ -56,5 +57,10 @@ export default {
     */
     extend(config, ctx) {
     }
+  },
+  //set own env variables
+  env:{
+
+    baseUrl: process.env.BASE_URL ||  "https://web-blog-50516.firebaseio.com"
   }
 }

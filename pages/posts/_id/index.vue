@@ -28,7 +28,7 @@
       title: "A Blog Post"
     },
     asyncData(context) {
-      return axios.get(`https://web-blog-50516.firebaseio.com/posts/${context.params.id}.json`)
+      return axios.get(process.env.baseUrl + `/posts/${context.params.id}.json`)
         .then(res => {
           return { loadedPost: res.data}
         })

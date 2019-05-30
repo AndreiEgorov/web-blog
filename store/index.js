@@ -24,11 +24,12 @@ const createStore = () => {
     actions: {
       nuxtServerInit(vuexContext, context) {
         return axios
-          .get("https://web-blog-50516.firebaseio.com/posts.json")
+          // grab base url from process env after setting it up in nuxt config
+          .get(process.env.baseUrl + "/posts.json")
           .then(res => {
             const postsArray = [];
             for (const key in res.data) {
-              postsArray.push({ ...res.data[key], id: key });
+              postsArray.push({...res.data[key], id: key});
             }
             vuexContext.commit("setPosts", postsArray);
           })
