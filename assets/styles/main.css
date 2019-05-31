@@ -1,0 +1,8 @@
+/*fade  is a name of the animation and the rest are different states */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s;
+}
+
+.fade-enter,  .fade-leave-to {
+  opacity: 0;
+}
