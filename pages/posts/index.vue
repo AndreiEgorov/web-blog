@@ -13,7 +13,7 @@
       PostList
     },
     // middleware takes a string of a filename of middleware
-    middleware: ['log', 'auth'],
+    middleware: ['check-auth', 'auth'],
     computed: {
       loadedPosts() {
         return this.$store.getters.loadedPosts
