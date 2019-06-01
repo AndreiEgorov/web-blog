@@ -1,21 +1,23 @@
 <template>
-    <div class="about-page">
-        <h1> This is my About me page</h1>
-      <p>About me page! About me page! About me page! About me page! About me page!</p>
-      <p>About me page! About me page! About me page! About me page! About me page!</p>
-      <p>About me page! About me page! About me page! About me page! About me page!</p>
-      <p>About me page! About me page! About me page! About me page! About me page!</p>
-    </div>
+  <div class="about-page">
+    <h1> This is my About me page</h1>
+    <p>About me page! About me page! About me page! About me page! About me page!</p>
+    <p>About me page! About me page! About me page! About me page! About me page!</p>
+    <p>About me page! About me page! About me page! About me page! About me page!</p>
+    <p>About me page! About me page! About me page! About me page! About me page!</p>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "index"
-    }
+  export default {
+    name: "index",
+    middleware: "auth",
+
+  }
 </script>
 
 <style scoped>
-  .about-page{
+  .about-page {
     text-align: center;
     padding: 30px
   }
