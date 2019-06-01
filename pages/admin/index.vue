@@ -15,6 +15,8 @@
 
   export default {
     layout:'admin',
+    middleware: "auth",
+
     components: {
       AppButton,
       PostList
