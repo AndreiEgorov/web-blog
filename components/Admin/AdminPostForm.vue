@@ -57,7 +57,6 @@
       onSave() {
         //Save the post
         this.$emit("submit", this.editedPost);
-        console.log("on SAVE", this.editedPost)
       },
       onCancel() {
         this.$router.push('/admin')
