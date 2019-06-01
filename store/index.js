@@ -21,14 +21,17 @@ const createStore = () => {
         );
         state.loadedPosts[postIndex] = editedPost
       },
-      setToken(state, token){
+      setToken(state, token) {
         state.token = token;
+      },
+      clearToken(state) {
+        state.token = null
       }
     },
     actions: {
       nuxtServerInit(vuexContext, context) {
         return axios
-          // grab base url from process env after setting it up in nuxt config
+        // grab base url from process env after setting it up in nuxt config
           .get(process.env.baseUrl + "/posts.json")
           .then(res => {
             const postsArray = [];
@@ -64,7 +67,7 @@ const createStore = () => {
         vuexContext.commit("setPosts", posts);
       },
 
-      authenticateUser(vuexContext, authData){
+      authenticateUser(vuexContext, authData) {
         let authUrl = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${process.env.fbAPIKey}`;
         if (!authData.isLogin) {
           authUrl = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${process.env.fbAPIKey}`;
@@ -75,19 +78,29 @@ const createStore = () => {
           password: authData.password,
           returnSecureToken: true,
         })
-          .then(result =>{
-            vuexContext.commit('setToken', result.data.idToken)
+          .then(result => {
+            console.log('RESULT', result);
+            vuexContext.commit('setToken', result.data.idToken);
+            console.log("EXPIRES IN", result.data.expiresIn)
+            // sinse setTimeout takes time in ms => * 1000
+            // vuexContext.dispathc('setLogoutTimer', 3600 * 1000)
+            vuexContext.dispatch('setLogoutTimer', 9000)
           })
           .catch(e => console.log(e))
-      }
+      },
+      setLogoutTimer(vuexContext, duration) {
+        setTimeout(() => {
+          vuexContext.commit("clearToken")
+        }, duration);
 
+      }
 
     },
     getters: {
       loadedPosts(state) {
         return state.loadedPosts;
       },
-      isAuthenticated(state){
+      isAuthenticated(state) {
         return state.token != null;
       }
     }
