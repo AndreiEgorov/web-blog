@@ -12,12 +12,13 @@
     components: {
       PostList
     },
-
-   computed:{
+    // middleware takes a string of a filename of middleware
+    middleware: 'log',
+    computed: {
       loadedPosts() {
         return this.$store.getters.loadedPosts
       }
-   }
+    }
 
   }
 </script>
