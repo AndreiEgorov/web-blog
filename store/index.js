@@ -46,14 +46,15 @@ const createStore = () => {
         }
         console.log("My post", post)
         return axios
-          .post("https://web-blog-50516.firebaseio.com/posts.json", createdPost)
+          .post(`https://web-blog-50516.firebaseio.com/posts.json?auth=${vuexContext.state.token}`, createdPost)
           .then(result => {
             vuexContext.commit('addPost', {...createdPost, id: result.data.name})
           })
           .catch(e => console.log(e));
       },
       editPost(vuexContext, editedPost) {
-        return axios.put(`https://web-blog-50516.firebaseio.com/posts/${editedPost.id}.json`, editedPost)
+        return axios.put(`https://web-blog-50516.firebaseio.com/posts/${editedPost.id}.json?auth=${vuexContext.state.token}`, editedPost)
+
           .then(res => {
             vuexContext.commit('editPost', editedPost)
           })
