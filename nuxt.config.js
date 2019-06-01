@@ -60,7 +60,7 @@ export default {
   },
   //set own env variables
   env:{
-
+    fbAPIKey: 'AIzaSyBHtgq6Z_VWVXXkEu39_VoADrvrs0DWMrI',
     baseUrl: process.env.BASE_URL ||  "https://web-blog-50516.firebaseio.com"
   },
   // switch root directory if needed; make sure there are your node modules
