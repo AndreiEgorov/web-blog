@@ -13,8 +13,7 @@
   export default {
     name: "NewPost",
     layout: 'admin',
-    middleware: "auth",
-
+    middleware: ["check-auth","auth"],
     components: {
       AdminPostForm,
     },
