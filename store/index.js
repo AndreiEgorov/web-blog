@@ -117,10 +117,20 @@ const createStore = () => {
           });
         }
         if (new Date().getTime() > +expirationDate || !token) {
-          vuexContext.commit("clearToken")
+          vuexContext.dispatch("logout")
           return;
         }
         vuexContext.commit("setToken", token)
+      },
+      logout(vuexContext){
+        vuexContext.commit("clearToken");
+        Cookie.remove("jwt");
+        Cookie.remove("expirationDate");
+        // we dispatch logout and on serverside too => need to make sure that local storage is only cleared when on client
+        if(process.isClient){
+          localStorage.removeItem("token")
+          localStorage.removeItem("tokenExpiration")
+        }
       }
 
     },
