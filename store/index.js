@@ -48,7 +48,6 @@ const createStore = () => {
           ...post,
           updatedDate: new Date()
         }
-        console.log("My post", post)
         return axios
           .post(`https://web-blog-50516.firebaseio.com/posts.json?auth=${vuexContext.state.token}`, createdPost)
           .then(result => {
@@ -85,20 +84,14 @@ const createStore = () => {
             console.log("EXPIRES IN", result.data.expiresIn)
             // sinse setTimeout takes time in ms => * 1000
             localStorage.setItem('token', result.data.idToken);
-            localStorage.setItem('tokenExpiration', new Date().getTime() + result.data.expiresIn * 1000);
+            localStorage.setItem('tokenExpiration', new Date().getTime() + Number.parseInt(result.data.expiresIn) * 1000);
 
             Cookie.set('jwt', result.data.idToken);
-            Cookie.set('expirationDate', new Date().getTime() + result.data.expiresIn * 1000);
-            vuexContext.dispatch('setLogoutTimer', 3600 * 1000)
+            Cookie.set('expirationDate', new Date().getTime() + Number.parseInt(result.data.expiresIn) * 1000);
           })
           .catch(e => console.log(e))
       },
-      setLogoutTimer(vuexContext, duration) {
-        setTimeout(() => {
-          vuexContext.commit("clearToken")
-        }, duration);
 
-      },
       // req is just a regular payload
       initAuth(vuexContext, req) {
         let token;
@@ -109,7 +102,7 @@ const createStore = () => {
             return
           }
           const jwtCookie = req.headers.cookie.split(";").find(c => c.trim().startsWith("jwt="))
-          if(!jwtCookie){
+          if (!jwtCookie) {
             return
           }
           token = jwtCookie.split("=")[1]
@@ -122,14 +115,12 @@ const createStore = () => {
             token,
             expirationDate
           });
-
-          if (new Date().getTime() > +expirationDate || !token) {
-            return;
-          }
         }
-
+        if (new Date().getTime() > +expirationDate || !token) {
+          vuexContext.commit("clearToken")
+          return;
+        }
         vuexContext.commit("setToken", token)
-        vuexContext.dispatch("setLogoutTimer", +expirationDate - new Date().getTime())
       }
 
     },
