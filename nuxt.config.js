@@ -1,4 +1,5 @@
 import pkg from './package'
+const bodyParser = require('body-parser')
 
 export default {
   mode: 'universal',
@@ -92,7 +93,13 @@ export default {
   transition:{
     name: 'fade',
     mode: 'out-in'
-  }
+  },
+  // a collection of node and express compatable middlewares that will be executed prior to the nuxt rentering process
+  // bodyParser to parse incoming json bodies and add the to the body field onto the incoming request object
+  serverMiddleware:[
+    bodyParser.json(),
+    '~/api'
+  ]
 
 }
 
